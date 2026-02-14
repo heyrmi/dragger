@@ -1,65 +1,153 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Cigarette, Users, Trophy, Bell } from "lucide-react";
 
-export default function Home() {
+const features = [
+  {
+    icon: Cigarette,
+    title: "Track your drags",
+    description:
+      "Log when you had a cigarette or confirm you're still going strong. Simple, honest, no judgement.",
+  },
+  {
+    icon: Users,
+    title: "Bring your friends",
+    description:
+      "Invite your smoking buddies. See their streaks, cheer them on, and hold each other accountable.",
+  },
+  {
+    icon: Trophy,
+    title: "Climb the leaderboard",
+    description:
+      "Compete with friends on who can go the longest. A little competition never hurt anyone.",
+  },
+  {
+    icon: Bell,
+    title: "Get nudged",
+    description:
+      "Haven't logged in a while? Your friends can nudge you. Because they care.",
+  },
+];
+
+const steps = [
+  { step: "1", title: "Sign up", description: "Create your account in seconds." },
+  {
+    step: "2",
+    title: "Log your first update",
+    description: "Had a drag? No change? Just be honest.",
+  },
+  {
+    step: "3",
+    title: "Invite friends",
+    description: "Share your invite link. It's better together.",
+  },
+];
+
+export default function LandingPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen bg-bg-primary">
+      {/* Header */}
+      <header className="flex items-center justify-between px-6 py-4 md:px-12">
+        <span className="font-heading text-lg font-bold tracking-tight text-text-primary">
+          dragger
+        </span>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/login"
+            className="text-sm text-text-secondary hover:text-text-primary transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Sign in
+          </Link>
+          <Link
+            href="/signup"
+            className="rounded-sm bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover transition-colors active:scale-[0.98]"
           >
-            Documentation
-          </a>
+            Get started
+          </Link>
         </div>
-      </main>
+      </header>
+
+      {/* Hero */}
+      <section className="mx-auto max-w-4xl px-6 py-20 text-center md:py-32">
+        <h1 className="font-heading text-4xl font-bold tracking-tight md:text-6xl">
+          Quit together.
+        </h1>
+        <p className="mx-auto mt-6 max-w-lg text-lg text-text-secondary leading-relaxed">
+          Dragger helps friend groups track and reduce cigarette consumption.
+          No pressure, no lectures, just honest tracking and a little friendly competition.
+        </p>
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <Link
+            href="/signup"
+            className="inline-flex items-center rounded-sm bg-accent px-8 py-3 font-medium text-white hover:bg-accent-hover transition-colors active:scale-[0.98]"
+          >
+            Start tracking
+          </Link>
+          <Link
+            href="/login"
+            className="inline-flex items-center rounded-sm border border-border px-8 py-3 font-medium text-text-primary hover:border-text-secondary transition-colors"
+          >
+            I have an account
+          </Link>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="mx-auto max-w-4xl px-6 py-16">
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-center mb-12">
+          How it works
+        </h2>
+        <div className="grid gap-8 md:grid-cols-3">
+          {steps.map((s) => (
+            <div key={s.step} className="text-center">
+              <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-border font-mono text-sm font-bold text-accent">
+                {s.step}
+              </div>
+              <h3 className="font-heading text-lg font-bold">{s.title}</h3>
+              <p className="mt-2 text-sm text-text-secondary">{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="mx-auto max-w-4xl px-6 py-16">
+        <div className="grid gap-6 md:grid-cols-2">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="rounded-sm border border-border bg-bg-card p-6"
+            >
+              <feature.icon size={24} className="text-accent mb-3" />
+              <h3 className="font-heading text-lg font-bold">{feature.title}</h3>
+              <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-4xl px-6 py-20 text-center">
+        <h2 className="font-heading text-3xl font-bold tracking-tight">
+          Ready to see how long you can go?
+        </h2>
+        <p className="mt-4 text-text-secondary">
+          Free. No ads. Just you, your friends, and a little accountability.
+        </p>
+        <Link
+          href="/signup"
+          className="mt-8 inline-flex items-center rounded-sm bg-accent px-8 py-3 font-medium text-white hover:bg-accent-hover transition-colors active:scale-[0.98]"
+        >
+          Get started
+        </Link>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border px-6 py-8 text-center text-sm text-text-secondary">
+        <span className="font-heading font-bold text-text-primary">dragger</span>
+        {" — "}Quit together.
+      </footer>
     </div>
   );
 }
